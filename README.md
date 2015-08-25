@@ -37,6 +37,20 @@ In the exploratory vein, I thought it would be interesting to use the CLI for th
 
 I wrote a small benchmarking program that reads parameters from a configuration file and performs testing on all functions with a certain prefix imported from a configurable module.
 
+Some benchmarking images I looked at during this process:
+
+* The two “native functions” plotted agains the `nlargest_*3` functions created for this task:
+  ![elements_1e1__1e4_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471122/2f73282c-4b4f-11e5-8d68-90b6d4f62b52.png)
+
+* As above, but plotted for more elements:
+  ![elements_1e1__1e7_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471123/2f7f5ade-4b4f-11e5-8b62-8dedb083c1d9.png)
+
+* `nlargest_*3` plotted against the initial `nlargest_*` ideas:
+  ![elements_1e1__1e4_nlargest2_against_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471124/2fad2180-4b4f-11e5-95fc-b8bdbf6a4b30.png)
+
+* `nlargest_*3` plotted against the initial `nlargest_*` ideas:
+  ![elements_1e1__1e4_nlargest_against_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471121/2f64deac-4b4f-11e5-9920-3ea86cea8d8e.png)
+
 
 License
 -------
