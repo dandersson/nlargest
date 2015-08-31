@@ -81,7 +81,7 @@ def filename_timestamp(timestamp=None):
 
 
 def parse_cli_arguments(args):
-    """Define CLI interface and parse arguments accordingly."""
+    """Define CLI and parse arguments accordingly."""
     argparser = argparse.ArgumentParser(description=__doc__)
 
     argparser.add_argument('config', help='configuration file')
