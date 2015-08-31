@@ -12,18 +12,8 @@ unsorted = [random.randrange(0, 99) for i in range(10)]
 
 class TestSequence(unittest.TestCase):
     functions = (
-        nlargest.nlargest_list,
-        nlargest.nlargest_list2,
-        nlargest.nlargest_list3,
-        nlargest.nlargest_heapreplace,
-        nlargest.nlargest_heapreplace2,
-        nlargest.nlargest_heapreplace3,
-        nlargest.nlargest_heappushpop,
-        nlargest.nlargest_heappushpop2,
-        nlargest.nlargest_heappushpop3,
-        nlargest.nlargest_manual_heapreplace,
-        nlargest.nlargest_manual_heapreplace2,
-        nlargest.nlargest_manual_heapreplace3,
+        getattr(nlargest, fun)
+        for fun in dir(nlargest) if fun.startswith('nlargest_')
     )
 
     def test_get_largest(self):
