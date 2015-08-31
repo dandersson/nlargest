@@ -4,6 +4,16 @@ import heapq
 import itertools
 
 
+def nlargest_ref_sorted(n, iterable):
+    """Full list sorting for reference."""
+    return sorted(iterable)[-n:]
+
+
+def nlargest_ref_heapq(n, iterable):
+    """Vanilla implementation from the heapq module."""
+    return heapq.nlargest(n, iterable)[::-1]
+
+
 def nlargest_list(n, iterable):
     """Return the n largest items in the given iterable. O(N) performance for
     small n, where N is the length of the list.
