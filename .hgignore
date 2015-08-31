@@ -1,2 +1,4 @@
+nlargest/.make-pip
+nlargest/figures
 nlargest/output
 __pycache__

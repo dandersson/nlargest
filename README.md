@@ -18,17 +18,17 @@ The included [`heapq.nlargest`](https://docs.python.org/3/library/heapq.html#hea
 For picking the 5 largest numbers in the largest list tested, consisting of 10^7 randomly distributed positive integers, the times (on a certain computer) were distributed approximately like:
 
 * initial naïve solution described above: 16.2 seconds
-* `heapq.nlargest`: 1.56 seconds
-* My fastest variation (`nlargest_list3`): 0.51 seconds
+* `heapq.nlargest`: 1.53 seconds
+* my fastest variation for this element count (`nlargest_list3`): 0.500 seconds
+
+but there are large fluctuations between the algorithms depending on the number of input elements.
 
 Note that the `heapq.nlargest` solution is expressed in native C code in the CPython interpreter, whereas `nlargest_list3` needs relatively slow Python function calls.
 
 
 Outlook
 -------
-The performance difference is not that practically noticeable, and the use case is probably not that large. I will not pursue this matter further, but it was interesting to think about the problem and architect different solutions.
-
-I might clean up the graphing solution I used to compare the solutions and include it in the repository; currently it is just a Matlab script to which I copy+pasted measurement data.
+At a factor 3, the performance difference is not that practically noticeable, and the use case is probably not that large. I will not pursue this matter further, but it was interesting to think about the problem and architect different solutions.
 
 
 Benchmarking
@@ -37,19 +37,28 @@ In the exploratory vein, I thought it would be interesting to use the CLI for th
 
 I wrote a small benchmarking program that reads parameters from a configuration file and performs testing on all functions with a certain prefix imported from a configurable module.
 
-Some benchmarking images I looked at during this process:
 
-* The two “native functions” plotted agains the `nlargest_*3` functions created for this task:
-  ![elements_1e1__1e4_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471122/2f73282c-4b4f-11e5-8d68-90b6d4f62b52.png)
+Plotting
+--------
+I used [`matplotlib`](http://matplotlib.org/) to generate predefined comparison images. Scripts are included in the repository. Sample figures are shown below.
 
-* As above, but plotted for more elements:
-  ![elements_1e1__1e7_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471123/2f7f5ade-4b4f-11e5-8b62-8dedb083c1d9.png)
+* Every tested function plotted at their full range. Not very readable (see later images for more clarity), but shown to illustrate the general tendencies.
+  ![benchmark_output_2015-08-31_16_00_20__plot_all_series__axis_large](https://cloud.githubusercontent.com/assets/3901008/9583839/d0d09ea8-500d-11e5-8602-728cac6a642b.png)
 
-* `nlargest_*3` plotted against the initial `nlargest_*` ideas:
-  ![elements_1e1__1e4_nlargest2_against_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471124/2fad2180-4b4f-11e5-95fc-b8bdbf6a4b30.png)
+* As above, but plotted to fewer elements.
+  ![benchmark_output_2015-08-31_16_00_20__plot_all_series__axis_small](https://cloud.githubusercontent.com/assets/3901008/9583840/d0e3d928-500d-11e5-8447-e33dd4a00751.png)
 
-* `nlargest_*3` plotted against the initial `nlargest_*` ideas:
-  ![elements_1e1__1e4_nlargest_against_nlargest3](https://cloud.githubusercontent.com/assets/3901008/9471121/2f64deac-4b4f-11e5-9920-3ea86cea8d8e.png)
+* Comparison of initialization strategy 1 and 2 for the new functions.
+  ![benchmark_output_2015-08-31_16_00_20__plot_init_1_against_init_2__axis_small](https://cloud.githubusercontent.com/assets/3901008/9583841/d0f6e20c-500d-11e5-83f9-7ac172ca2c29.png)
+
+* Comparison of initialization strategy 1 and 3 for the new functions.
+  ![benchmark_output_2015-08-31_16_00_20__plot_init_1_against_init_3__axis_small](https://cloud.githubusercontent.com/assets/3901008/9583843/d0fcafb6-500d-11e5-9488-d958564bf96e.png)
+
+* Comparison of initialization strategy 2 and 3 for the new functions.
+  ![benchmark_output_2015-08-31_16_00_20__plot_init_2_against_init_3__axis_small](https://cloud.githubusercontent.com/assets/3901008/9583844/d0fde57a-500d-11e5-8e63-c0d937afd6e0.png)
+
+* Comparison of the reference functions and the new functions with initialization strategy 2.
+  ![benchmark_output_2015-08-31_16_00_20__plot_ref_against_init_2__axis_small](https://cloud.githubusercontent.com/assets/3901008/9583842/d0fb0ec2-500d-11e5-9cf2-61e3559a594d.png)
 
 
 License
